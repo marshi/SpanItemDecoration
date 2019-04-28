@@ -19,13 +19,9 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
         val vhAdapter = VhAdapter()
         binding.recyclerview.adapter = vhAdapter
-        vhAdapter.add("aiueoooo")
-        vhAdapter.add("aiueo2")
-        vhAdapter.add("aiueo3")
-        vhAdapter.add("aiueo4")
-        vhAdapter.add("aiueo5")
-        vhAdapter.add("aiueo6")
-        vhAdapter.add("aiueo7")
+        (1..100).forEach {
+            vhAdapter.add("$it")
+        }
         binding.recyclerview.addItemDecoration(SpanItemDecoration(this, vhAdapter))
     }
 }
