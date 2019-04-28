@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         (1..100).forEach {
             vhAdapter.add("$it")
         }
-        binding.recyclerview.addItemDecoration(SpanItemDecoration(this, vhAdapter))
+        binding.recyclerview.addItemDecoration(TextSpanItemDecoration(this, vhAdapter))
     }
 }
 

@@ -4,27 +4,21 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.view.View
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 
-class SpanItemDecoration(
+abstract class SpanItemDecoration(
     context: Context,
-    val groupAdapter: RecyclerView.Adapter<*>
+    open val groupAdapter: RecyclerView.Adapter<*>
 ) : RecyclerView.ItemDecoration() {
-    private val resources = context.resources
-    private val textSize = resources.getDimensionPixelSize(
-        R.dimen.session_bottom_sheet_left_time_text_size
-    )
-    private val textLeftSpace = resources.getDimensionPixelSize(
-        R.dimen.session_bottom_sheet_left_time_text_left
-    )
-    private val textPaddingTop = resources.getDimensionPixelSize(
-        R.dimen.session_bottom_sheet_left_time_text_padding_top
-    )
-    private val textPaddingBottom = resources.getDimensionPixelSize(
-        R.dimen.session_bottom_sheet_left_time_text_padding_bottom
-    )
-    val paint = Paint().apply {
+
+    open val textPaddingTop = 0
+    open val textSize = 0
+    open val textPaddingBottom = 0
+    open val textLeftSpace = 0
+
+    open val paint = Paint().apply {
         style = Paint.Style.FILL
         textSize = 100f
         color = Color.BLACK
@@ -35,29 +29,26 @@ class SpanItemDecoration(
         var prevText: String? = null
         parent.children.forEachIndexed { index, view ->
             val position = parent.getChildAdapterPosition(view)
-            val text = getSessionTime(position) ?: return@forEachIndexed
+            val text = text(position) ?: return@forEachIndexed
             if (prevText == text) {
                 return@forEachIndexed
             }
             prevText = text
-            val nextText = getSessionTime(position + 1)
-            var textBaselineY = view.top.coerceAtLeast(0) + textPaddingTop + textSize
-            if (text != nextText) {
-                textBaselineY = textBaselineY.coerceAtMost(view.bottom - textPaddingBottom)
-            }
-            c.drawText(
-                text,
-                textLeftSpace.toFloat(),
-                textBaselineY.toFloat(),
-                paint
-            )
+            val nextText = text(position + 1)
+            val drawParameter = drawParameter(position, view, prevText, text, nextText)
+            draw(c, drawParameter)
         }
     }
 
-    private fun getSessionTime(position: Int): String? {
-        if (position < 0 || position >= groupAdapter.itemCount) {
-            return null
-        }
-        return "aaaaaaaaaaaaaaaa+${position / 3}"
-    }
+    protected abstract fun text(position: Int): String?
+
+    protected abstract fun draw(canvas: Canvas, drawParameter: DrawParameter)
+
+    protected abstract fun drawParameter(
+        position: Int,
+        view: View,
+        prevText: String?,
+        text: String,
+        nextText: String?
+    ): DrawParameter
 }
