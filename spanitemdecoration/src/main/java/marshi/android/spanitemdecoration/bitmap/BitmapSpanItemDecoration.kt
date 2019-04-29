@@ -10,10 +10,11 @@ import marshi.android.spanitemdecoration.DrawParameter
 import marshi.android.spanitemdecoration.R
 import marshi.android.spanitemdecoration.SpanItemDecoration
 
-class BitmapSpanItemDecoration(
+abstract class BitmapSpanItemDecoration(
     val context: Context,
     override val groupAdapter: RecyclerView.Adapter<*>
 ) : SpanItemDecoration<BitMapDecorationAsset>(context, groupAdapter) {
+
     override fun asset(position: Int): BitMapDecorationAsset? {
         val bitmap = BitmapFactory.decodeResource(
             context.resources,

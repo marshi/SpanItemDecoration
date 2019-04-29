@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import marshi.android.spanitemdecoration.bitmap.BitmapSpanItemDecoration
 import marshi.android.spanitemdecoration.databinding.ActivityMainBinding
 import marshi.android.spanitemdecoration.databinding.ItemBinding
 
@@ -23,22 +22,17 @@ class MainActivity : AppCompatActivity() {
         (1..100).forEach {
             vhAdapter.add("$it")
         }
-//        binding.recyclerview.addItemDecoration(
-//            TextSpanItemDecoration(
-//                this,
-//                vhAdapter,
-//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_size),
-//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_left),
-//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_top),
-//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_bottom)
-//            )
-//        )
         binding.recyclerview.addItemDecoration(
-            BitmapSpanItemDecoration(
+            ConcreteTextSpanItemDecoration(
                 this,
-                vhAdapter
+                vhAdapter,
+                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_size),
+                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_left),
+                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_top),
+                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_bottom)
             )
         )
+//        binding.recyclerview.addItemDecoration(ConcreteBitmapSpamItemDecoration(this, vhAdapter))
     }
 }
 

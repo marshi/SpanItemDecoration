@@ -26,11 +26,11 @@ abstract class SpanItemDecoration<T : DecorationAsset<*>>(
         }
     }
 
-    protected abstract fun asset(position: Int): T?
+    abstract fun asset(position: Int): T?
 
-    protected abstract fun draw(canvas: Canvas, drawParameter: DrawParameter)
+    internal abstract fun draw(canvas: Canvas, drawParameter: DrawParameter)
 
-    protected abstract fun drawParameter(
+    internal abstract fun drawParameter(
         position: Int,
         view: View,
         prevAsset: T?,

@@ -10,7 +10,7 @@ import marshi.android.spanitemdecoration.DrawParameter
 import marshi.android.spanitemdecoration.SpanItemDecoration
 import marshi.android.spanitemdecoration.TextDrawParameter
 
-class TextSpanItemDecoration(
+abstract class TextSpanItemDecoration(
     context: Context,
     override val groupAdapter: RecyclerView.Adapter<*>,
     private val textSize: Int,
@@ -51,7 +51,6 @@ class TextSpanItemDecoration(
         asset: StringDecorationAsset,
         nextAsset: StringDecorationAsset?
     ): DrawParameter {
-        println("draw $position ${asset.string}")
         var textBaselineY = view.top.coerceAtLeast(0) + textPaddingTop + textSize
         if (nextAsset?.isEqualsTo(asset) == false) {
             textBaselineY = textBaselineY.coerceAtMost(view.bottom - textPaddingBottom)
