@@ -22,7 +22,16 @@ class MainActivity : AppCompatActivity() {
         (1..100).forEach {
             vhAdapter.add("$it")
         }
-        binding.recyclerview.addItemDecoration(TextSpanItemDecoration(this, vhAdapter))
+        binding.recyclerview.addItemDecoration(
+            TextSpanItemDecoration(
+                this,
+                vhAdapter,
+                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_size),
+                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_left),
+                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_top),
+                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_bottom)
+            )
+        )
     }
 }
 

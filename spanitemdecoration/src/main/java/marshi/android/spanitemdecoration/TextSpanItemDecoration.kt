@@ -9,31 +9,21 @@ import androidx.recyclerview.widget.RecyclerView
 
 class TextSpanItemDecoration(
     context: Context,
-    override val groupAdapter: RecyclerView.Adapter<*>
+    override val groupAdapter: RecyclerView.Adapter<*>,
+    private val textSize: Int,
+    private val textLeftSpace: Int,
+    private val textPaddingTop: Int,
+    private val textPaddingBottom: Int,
+    private val paint: Paint = Paint().apply {
+        this.style = Paint.Style.FILL
+        this.textSize = 100f
+        this.color = Color.BLACK
+        this.isAntiAlias = true
+    }
 ) : SpanItemDecoration<String>(
     context, groupAdapter
 ) {
-    private val resources = context.resources
-    private val textSize = resources.getDimensionPixelSize(
-        R.dimen.session_bottom_sheet_left_time_text_size
-    )
-    private val textLeftSpace = resources.getDimensionPixelSize(
-        R.dimen.session_bottom_sheet_left_time_text_left
-    )
-    private val textPaddingTop = resources.getDimensionPixelSize(
-        R.dimen.session_bottom_sheet_left_time_text_padding_top
-    )
-    private val textPaddingBottom = resources.getDimensionPixelSize(
-        R.dimen.session_bottom_sheet_left_time_text_padding_bottom
-    )
-    private val paint = Paint().apply {
-        style = Paint.Style.FILL
-        textSize = 100f
-        color = Color.BLACK
-        isAntiAlias = true
-    }
-
-    override fun text(position: Int): String? {
+    override fun asset(position: Int): String? {
         if (position < 0 || position >= groupAdapter.itemCount) {
             return null
         }
@@ -53,16 +43,19 @@ class TextSpanItemDecoration(
     override fun drawParameter(
         position: Int,
         view: View,
-        prevText: String?,
-        text: String,
-        nextText: String?
+        prevAsset: String?,
+        asset: String,
+        nextAsset: String?
     ): DrawParameter {
         var textBaselineY = view.top.coerceAtLeast(0) + textPaddingTop + textSize
-        if (text != nextText) {
+        if (asset != nextAsset) {
             textBaselineY = textBaselineY.coerceAtMost(view.bottom - textPaddingBottom)
         }
         return TextDrawParameter(
-            text, textLeftSpace.toFloat(), textBaselineY.toFloat(), paint
+            asset,
+            textLeftSpace.toFloat(),
+            textBaselineY.toFloat(),
+            paint
         )
     }
 }

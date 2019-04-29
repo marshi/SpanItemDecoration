@@ -15,26 +15,26 @@ abstract class SpanItemDecoration<T>(
         var prevAsset: T? = null
         parent.children.forEachIndexed { index, view ->
             val position = parent.getChildAdapterPosition(view)
-            val currentAsset = text(position) ?: return@forEachIndexed
+            val currentAsset = asset(position) ?: return@forEachIndexed
             if (prevAsset == currentAsset) {
                 return@forEachIndexed
             }
             prevAsset = currentAsset
-            val nextAsset = text(position + 1)
+            val nextAsset = asset(position + 1)
             val drawParameter = drawParameter(position, view, prevAsset, currentAsset, nextAsset)
             draw(c, drawParameter)
         }
     }
 
-    protected abstract fun text(position: Int): T?
+    protected abstract fun asset(position: Int): T?
 
     protected abstract fun draw(canvas: Canvas, drawParameter: DrawParameter)
 
     protected abstract fun drawParameter(
         position: Int,
         view: View,
-        prevText: T?,
-        text: T,
-        nextText: T?
+        prevAsset: T?,
+        asset: T,
+        nextAsset: T?
     ): DrawParameter
 }
