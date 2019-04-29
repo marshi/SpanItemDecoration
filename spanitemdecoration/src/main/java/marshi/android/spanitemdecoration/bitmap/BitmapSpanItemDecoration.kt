@@ -1,4 +1,4 @@
-package marshi.android.spanitemdecoration
+package marshi.android.spanitemdecoration.bitmap
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,13 +6,20 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import marshi.android.spanitemdecoration.BitmapDrawParameter
+import marshi.android.spanitemdecoration.DrawParameter
+import marshi.android.spanitemdecoration.R
+import marshi.android.spanitemdecoration.SpanItemDecoration
 
 class BitmapSpanItemDecoration(
     val context: Context,
     override val groupAdapter: RecyclerView.Adapter<*>
 ) : SpanItemDecoration<Bitmap>(context, groupAdapter) {
     override fun asset(position: Int): Bitmap? {
-        val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher)
+        val bitmap = BitmapFactory.decodeResource(
+            context.resources,
+            R.drawable.ic_launcher
+        )
         return bitmap
     }
 

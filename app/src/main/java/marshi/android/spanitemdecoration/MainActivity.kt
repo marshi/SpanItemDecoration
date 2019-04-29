@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import marshi.android.spanitemdecoration.bitmap.BitmapSpanItemDecoration
 import marshi.android.spanitemdecoration.databinding.ActivityMainBinding
 import marshi.android.spanitemdecoration.databinding.ItemBinding
 
