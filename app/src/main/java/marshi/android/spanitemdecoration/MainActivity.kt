@@ -22,16 +22,29 @@ class MainActivity : AppCompatActivity() {
         (1..100).forEach {
             vhAdapter.add("$it")
         }
+//        binding.recyclerview.addItemDecoration(
+//            TextSpanItemDecoration(
+//                this,
+//                vhAdapter,
+//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_size),
+//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_left),
+//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_top),
+//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_bottom)
+//            )
+//        )
         binding.recyclerview.addItemDecoration(
-            TextSpanItemDecoration(
+            BitmapSpanItemDecoration(
                 this,
-                vhAdapter,
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_size),
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_left),
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_top),
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_bottom)
+                vhAdapter
             )
         )
+        binding.recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val view = binding.recyclerview.getChildAt(0)
+//                println("position view.bottom=${view?.bottom}")
+            }
+        })
     }
 }
 

@@ -16,7 +16,7 @@ class TextSpanItemDecoration(
     private val textPaddingBottom: Int,
     private val paint: Paint = Paint().apply {
         this.style = Paint.Style.FILL
-        this.textSize = 100f
+        this.textSize = textSize.toFloat()
         this.color = Color.BLACK
         this.isAntiAlias = true
     }
