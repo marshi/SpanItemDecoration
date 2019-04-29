@@ -1,4 +1,4 @@
-package marshi.android.spanitemdecoration
+package marshi.android.spanitemdecoration.string
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,6 +6,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import marshi.android.spanitemdecoration.DrawParameter
+import marshi.android.spanitemdecoration.SpanItemDecoration
+import marshi.android.spanitemdecoration.TextDrawParameter
 
 class TextSpanItemDecoration(
     context: Context,
@@ -20,14 +23,15 @@ class TextSpanItemDecoration(
         this.color = Color.BLACK
         this.isAntiAlias = true
     }
-) : SpanItemDecoration<String>(
+) : SpanItemDecoration<StringDecorationAsset>(
     context, groupAdapter
 ) {
-    override fun asset(position: Int): String? {
+    override fun asset(position: Int): StringDecorationAsset? {
         if (position < 0 || position >= groupAdapter.itemCount) {
             return null
         }
-        return "aaaaaaaaaaaaaaaa+${position / 3}"
+        val string = "aaaaaaaaaaaaaaaa+${position / 3}"
+        return StringDecorationAsset(string, string)
     }
 
     override fun draw(canvas: Canvas, p: DrawParameter) {
@@ -43,16 +47,17 @@ class TextSpanItemDecoration(
     override fun drawParameter(
         position: Int,
         view: View,
-        prevAsset: String?,
-        asset: String,
-        nextAsset: String?
+        prevAsset: StringDecorationAsset?,
+        asset: StringDecorationAsset,
+        nextAsset: StringDecorationAsset?
     ): DrawParameter {
+        println("draw $position ${asset.string}")
         var textBaselineY = view.top.coerceAtLeast(0) + textPaddingTop + textSize
-        if (asset != nextAsset) {
+        if (nextAsset?.isEqualsTo(asset) == false) {
             textBaselineY = textBaselineY.coerceAtMost(view.bottom - textPaddingBottom)
         }
         return TextDrawParameter(
-            asset,
+            asset.string,
             textLeftSpace.toFloat(),
             textBaselineY.toFloat(),
             paint

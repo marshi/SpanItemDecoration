@@ -6,7 +6,7 @@ import android.view.View
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class SpanItemDecoration<T>(
+abstract class SpanItemDecoration<T : DecorationAsset<*>>(
     context: Context,
     open val groupAdapter: RecyclerView.Adapter<*>
 ) : RecyclerView.ItemDecoration() {
@@ -16,9 +16,11 @@ abstract class SpanItemDecoration<T>(
         parent.children.forEachIndexed { index, view ->
             val position = parent.getChildAdapterPosition(view)
             val currentAsset = asset(position) ?: return@forEachIndexed
-            if (prevAsset == currentAsset) {
+            if (prevAsset?.isEqualsTo(currentAsset) == true) {
+                println("equals to $position ${prevAsset?.id} ${currentAsset.id}")
                 return@forEachIndexed
             }
+            println("not equals to $position ${prevAsset?.id} ${currentAsset.id}")
             prevAsset = currentAsset
             val nextAsset = asset(position + 1)
             val drawParameter = drawParameter(position, view, prevAsset, currentAsset, nextAsset)

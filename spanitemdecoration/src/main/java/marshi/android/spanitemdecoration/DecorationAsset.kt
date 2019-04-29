@@ -1,6 +1,6 @@
 package marshi.android.spanitemdecoration
 
-abstract class DecorationAsset<T>(open val id: Long) {
-    abstract fun isEqualsTo(decorationAsset: DecorationAsset<T>): Boolean
+abstract class DecorationAsset<T>(open val id: String) {
+    abstract fun isEqualsTo(decorationAsset: DecorationAsset<*>): Boolean
     abstract fun value(): T
 }

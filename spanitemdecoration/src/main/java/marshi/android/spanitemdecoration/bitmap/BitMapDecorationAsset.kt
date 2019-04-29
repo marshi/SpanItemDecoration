@@ -4,10 +4,10 @@ import android.graphics.Bitmap
 import marshi.android.spanitemdecoration.DecorationAsset
 
 class BitMapDecorationAsset(
-    private val bitmap: Bitmap,
-    override val id: Long
+    val bitmap: Bitmap,
+    override val id: String
 ) : DecorationAsset<Bitmap>(id) {
-    override fun isEqualsTo(decorationAsset: DecorationAsset<Bitmap>): Boolean {
+    override fun isEqualsTo(decorationAsset: DecorationAsset<*>): Boolean {
         return id == decorationAsset.id
     }
 
