@@ -19,7 +19,11 @@ class BitmapSpanItemDecoration(
             context.resources,
             R.drawable.ic_launcher
         )
-        return BitMapDecorationAsset(bitmap, R.drawable.ic_launcher.toString())
+        return when (position / 2 % 2) {
+            0 -> BitMapDecorationAsset(bitmap, R.drawable.ic_launcher.toString())
+            1 -> BitMapDecorationAsset(bitmap, R.drawable.ic_launcher_round.toString())
+            else -> BitMapDecorationAsset(bitmap, R.drawable.ic_launcher_round.toString())
+        }
     }
 
     override fun draw(canvas: Canvas, drawParameter: DrawParameter) {
