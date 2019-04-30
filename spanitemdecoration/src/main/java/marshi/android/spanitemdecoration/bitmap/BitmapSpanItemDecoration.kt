@@ -34,7 +34,6 @@ abstract class BitmapSpanItemDecoration(
             top = top.coerceAtMost(view.bottom - asset.value.height)
         }
         return BitmapDrawParameter(
-            position,
             asset.value,
             0f,
             top.toFloat(),
