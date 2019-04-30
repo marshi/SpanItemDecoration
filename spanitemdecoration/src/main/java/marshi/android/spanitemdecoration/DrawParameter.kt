@@ -13,7 +13,6 @@ class TextDrawParameter(
 ) : DrawParameter()
 
 class BitmapDrawParameter(
-    val position: Int,
     val bitmap: Bitmap,
     val x: Float,
     val y: Float,
