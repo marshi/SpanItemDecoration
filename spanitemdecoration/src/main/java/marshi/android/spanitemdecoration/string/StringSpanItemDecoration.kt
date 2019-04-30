@@ -6,11 +6,14 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import marshi.android.spanitemdecoration.DecorationAsset
 import marshi.android.spanitemdecoration.DrawParameter
 import marshi.android.spanitemdecoration.SpanItemDecoration
 import marshi.android.spanitemdecoration.TextDrawParameter
 
-abstract class TextSpanItemDecoration(
+private typealias StringDecorationAsset = DecorationAsset<String>
+
+abstract class StringSpanItemDecoration(
     context: Context,
     override val groupAdapter: RecyclerView.Adapter<*>,
     private val textSize: Int,
@@ -56,7 +59,7 @@ abstract class TextSpanItemDecoration(
             textBaselineY = textBaselineY.coerceAtMost(view.bottom - textPaddingBottom)
         }
         return TextDrawParameter(
-            asset.string,
+            asset.value,
             textLeftSpace.toFloat(),
             textBaselineY.toFloat(),
             paint

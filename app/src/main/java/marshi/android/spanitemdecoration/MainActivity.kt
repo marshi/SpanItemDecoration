@@ -22,17 +22,17 @@ class MainActivity : AppCompatActivity() {
         (1..100).forEach {
             vhAdapter.add("$it")
         }
-        binding.recyclerview.addItemDecoration(
-            ConcreteTextSpanItemDecoration(
-                this,
-                vhAdapter,
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_size),
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_left),
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_top),
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_bottom)
-            )
-        )
-//        binding.recyclerview.addItemDecoration(ConcreteBitmapSpamItemDecoration(this, vhAdapter))
+//        binding.recyclerview.addItemDecoration(
+//            ConcreteStringSpanItemDecoration(
+//                this,
+//                vhAdapter,
+//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_size),
+//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_left),
+//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_top),
+//                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_bottom)
+//            )
+//        )
+        binding.recyclerview.addItemDecoration(ConcreteBitmapSpamItemDecoration(this, vhAdapter))
     }
 }
 
