@@ -4,7 +4,10 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.util.TypedValue
+import android.util.TypedValue.COMPLEX_UNIT_SP
 import android.view.View
+import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
 import marshi.android.spanitemdecoration.DecorationAsset
 import marshi.android.spanitemdecoration.DrawParameter
@@ -16,19 +19,53 @@ private typealias StringDecorationAsset = DecorationAsset<String>
 abstract class StringSpanItemDecoration(
     context: Context,
     override val groupAdapter: RecyclerView.Adapter<*>,
-    private val textSize: Int,
-    private val textLeftSpace: Int,
-    private val textPaddingTop: Int,
-    private val textPaddingBottom: Int,
+    private val textSize: Float,
+    private val textLeftSpace: Float,
+    private val textPaddingTop: Float,
+    private val textPaddingBottom: Float,
     private val paint: Paint = Paint().apply {
         this.style = Paint.Style.FILL
-        this.textSize = textSize.toFloat()
+        this.textSize = TypedValue.applyDimension(COMPLEX_UNIT_SP, textSize, context.resources.displayMetrics)
         this.color = Color.BLACK
         this.isAntiAlias = true
     }
 ) : SpanItemDecoration<StringDecorationAsset>(
     context, groupAdapter
 ) {
+    constructor(
+        context: Context,
+        groupAdapter: RecyclerView.Adapter<*>,
+        @DimenRes textSizeDimenResId: Int,
+        @DimenRes textLeftSpaceDimenResId: Int,
+        @DimenRes textPaddingTopDimenResId: Int,
+        @DimenRes textPaddingBottomDimenResId: Int,
+        paint: Paint
+    ) : this(
+        context,
+        groupAdapter,
+        context.resources.getDimension(textSizeDimenResId),
+        context.resources.getDimension(textLeftSpaceDimenResId),
+        context.resources.getDimension(textPaddingTopDimenResId),
+        context.resources.getDimension(textPaddingBottomDimenResId),
+        paint
+    )
+
+    constructor(
+        context: Context,
+        groupAdapter: RecyclerView.Adapter<*>,
+        @DimenRes textSizeDimenResId: Int,
+        @DimenRes textLeftSpaceDimenResId: Int,
+        @DimenRes textPaddingTopDimenResId: Int,
+        @DimenRes textPaddingBottomDimenResId: Int
+    ) : this(
+        context,
+        groupAdapter,
+        context.resources.getDimension(textSizeDimenResId),
+        context.resources.getDimension(textLeftSpaceDimenResId),
+        context.resources.getDimension(textPaddingTopDimenResId),
+        context.resources.getDimension(textPaddingBottomDimenResId)
+    )
+
     override fun asset(position: Int): StringDecorationAsset? {
         if (position < 0 || position >= groupAdapter.itemCount) {
             return null
@@ -60,8 +97,8 @@ abstract class StringSpanItemDecoration(
         }
         return TextDrawParameter(
             asset.value,
-            textLeftSpace.toFloat(),
-            textBaselineY.toFloat(),
+            textLeftSpace,
+            textBaselineY,
             paint
         )
     }

@@ -1,23 +1,24 @@
 package marshi.android.spanitemdecoration
 
 import android.content.Context
+import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
 import marshi.android.spanitemdecoration.string.StringSpanItemDecoration
 
 class ConcreteStringSpanItemDecoration(
     context: Context,
     override val groupAdapter: RecyclerView.Adapter<*>,
-    textSize: Int,
-    textLeftSpace: Int,
-    textPaddingTop: Int,
-    textPaddingBottom: Int
+    @DimenRes textSizeDimenId: Int,
+    @DimenRes textLeftSpaceDimenId: Int,
+    @DimenRes textPaddingTopDimenId: Int,
+    @DimenRes textPaddingBottomDimenId: Int
 ) : StringSpanItemDecoration(
     context,
     groupAdapter,
-    textSize,
-    textLeftSpace,
-    textPaddingTop,
-    textPaddingBottom
+    textSizeDimenId,
+    textLeftSpaceDimenId,
+    textPaddingTopDimenId,
+    textPaddingBottomDimenId
 ) {
 
     override fun asset(position: Int): DecorationAsset<String>? {

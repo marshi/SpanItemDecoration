@@ -12,7 +12,6 @@ import marshi.android.spanitemdecoration.databinding.ItemBinding
 
 class MainActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -26,10 +25,10 @@ class MainActivity : AppCompatActivity() {
             ConcreteStringSpanItemDecoration(
                 this,
                 vhAdapter,
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_size),
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_left),
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_top),
-                resources.getDimensionPixelSize(R.dimen.session_bottom_sheet_left_time_text_padding_bottom)
+                R.dimen.text_size,
+                R.dimen.text_padding_left,
+                R.dimen.text_padding_top,
+                R.dimen.text_padding_bottom
             )
         )
 //        binding.recyclerview.addItemDecoration(ConcreteBitmapSpamItemDecoration(this, vhAdapter))
