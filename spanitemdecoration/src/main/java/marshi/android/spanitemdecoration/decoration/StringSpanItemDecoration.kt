@@ -1,4 +1,4 @@
-package marshi.android.spanitemdecoration.string
+package marshi.android.spanitemdecoration.decoration
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,7 +8,6 @@ import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_SP
 import android.view.View
 import androidx.annotation.DimenRes
-import androidx.recyclerview.widget.RecyclerView
 import marshi.android.spanitemdecoration.DecorationAsset
 import marshi.android.spanitemdecoration.DrawParameter
 import marshi.android.spanitemdecoration.SpanItemDecoration
@@ -18,7 +17,6 @@ private typealias StringDecorationAsset = DecorationAsset<String>
 
 abstract class StringSpanItemDecoration(
     context: Context,
-    override val groupAdapter: RecyclerView.Adapter<*>,
     private val textSize: Float,
     private val textLeftSpace: Float,
     private val textPaddingTop: Float,
@@ -29,12 +27,9 @@ abstract class StringSpanItemDecoration(
         this.color = Color.BLACK
         this.isAntiAlias = true
     }
-) : SpanItemDecoration<StringDecorationAsset>(
-    context, groupAdapter
-) {
+) : SpanItemDecoration<StringDecorationAsset>() {
     constructor(
         context: Context,
-        groupAdapter: RecyclerView.Adapter<*>,
         @DimenRes textSizeDimenResId: Int,
         @DimenRes textLeftSpaceDimenResId: Int,
         @DimenRes textPaddingTopDimenResId: Int,
@@ -42,7 +37,6 @@ abstract class StringSpanItemDecoration(
         paint: Paint
     ) : this(
         context,
-        groupAdapter,
         context.resources.getDimension(textSizeDimenResId),
         context.resources.getDimension(textLeftSpaceDimenResId),
         context.resources.getDimension(textPaddingTopDimenResId),
@@ -52,27 +46,17 @@ abstract class StringSpanItemDecoration(
 
     constructor(
         context: Context,
-        groupAdapter: RecyclerView.Adapter<*>,
         @DimenRes textSizeDimenResId: Int,
         @DimenRes textLeftSpaceDimenResId: Int,
         @DimenRes textPaddingTopDimenResId: Int,
         @DimenRes textPaddingBottomDimenResId: Int
     ) : this(
         context,
-        groupAdapter,
         context.resources.getDimension(textSizeDimenResId),
         context.resources.getDimension(textLeftSpaceDimenResId),
         context.resources.getDimension(textPaddingTopDimenResId),
         context.resources.getDimension(textPaddingBottomDimenResId)
     )
-
-    override fun asset(position: Int): StringDecorationAsset? {
-        if (position < 0 || position >= groupAdapter.itemCount) {
-            return null
-        }
-        val string = "aaaaaaaaaaaaaaaa+${position / 3}"
-        return StringDecorationAsset(string, string)
-    }
 
     override fun draw(canvas: Canvas, p: DrawParameter) {
         val param = p as? TextDrawParameter ?: return

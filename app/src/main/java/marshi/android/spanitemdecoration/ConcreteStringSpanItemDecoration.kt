@@ -3,18 +3,17 @@ package marshi.android.spanitemdecoration
 import android.content.Context
 import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
-import marshi.android.spanitemdecoration.string.StringSpanItemDecoration
+import marshi.android.spanitemdecoration.decoration.StringSpanItemDecoration
 
 class ConcreteStringSpanItemDecoration(
     context: Context,
-    override val groupAdapter: RecyclerView.Adapter<*>,
+    private val groupAdapter: RecyclerView.Adapter<*>,
     @DimenRes textSizeDimenId: Int,
     @DimenRes textLeftSpaceDimenId: Int,
     @DimenRes textPaddingTopDimenId: Int,
     @DimenRes textPaddingBottomDimenId: Int
 ) : StringSpanItemDecoration(
     context,
-    groupAdapter,
     textSizeDimenId,
     textLeftSpaceDimenId,
     textPaddingTopDimenId,
