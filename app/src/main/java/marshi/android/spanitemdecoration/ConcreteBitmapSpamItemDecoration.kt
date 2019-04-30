@@ -3,13 +3,22 @@ package marshi.android.spanitemdecoration
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
 import marshi.android.spanitemdecoration.decoration.BitmapSpanItemDecoration
 
 class ConcreteBitmapSpamItemDecoration(
     context: Context,
-    private val groupAdapter: RecyclerView.Adapter<*>
-) : BitmapSpanItemDecoration(context) {
+    private val groupAdapter: RecyclerView.Adapter<*>,
+    @DimenRes leftSpace: Int,
+    @DimenRes paddingTop: Int,
+    @DimenRes paddingBottom: Int
+) : BitmapSpanItemDecoration(
+    context,
+    leftSpace,
+    paddingTop,
+    paddingBottom
+) {
 
     private val bitmap = BitmapFactory.decodeResource(
         context.resources,

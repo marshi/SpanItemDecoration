@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_size">10sp</dimen>
-    <dimen name="text_padding_left">16dp</dimen>
-    <dimen name="text_padding_top">10dp</dimen>
-    <dimen name="text_padding_bottom">8dp</dimen>
+    <dimen name="padding_left">10dp</dimen>
+    <dimen name="padding_top">0dp</dimen>
+    <dimen name="padding_bottom">100dp</dimen>
 </resources>

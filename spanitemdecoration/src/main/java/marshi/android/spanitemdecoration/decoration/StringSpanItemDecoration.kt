@@ -2,11 +2,11 @@ package marshi.android.spanitemdecoration.decoration
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_SP
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.annotation.DimenRes
 import marshi.android.spanitemdecoration.DecorationAsset
 import marshi.android.spanitemdecoration.DrawParameter
@@ -16,17 +16,12 @@ import marshi.android.spanitemdecoration.TextDrawParameter
 private typealias StringDecorationAsset = DecorationAsset<String>
 
 abstract class StringSpanItemDecoration(
-    context: Context,
-    private val textSize: Float,
-    private val textLeftSpace: Float,
-    private val textPaddingTop: Float,
-    private val textPaddingBottom: Float,
-    private val paint: Paint = Paint().apply {
-        this.style = Paint.Style.FILL
-        this.textSize = TypedValue.applyDimension(COMPLEX_UNIT_SP, textSize, context.resources.displayMetrics)
-        this.color = Color.BLACK
-        this.isAntiAlias = true
-    }
+    private val context: Context,
+    private val textSizeSp: Float,
+    private val textLeftSpaceSp: Float,
+    private val textPaddingTopSp: Float,
+    private val textPaddingBottomSp: Float,
+    @ColorInt private val colorInt: Int
 ) : SpanItemDecoration<StringDecorationAsset>() {
     constructor(
         context: Context,
@@ -34,28 +29,14 @@ abstract class StringSpanItemDecoration(
         @DimenRes textLeftSpaceDimenResId: Int,
         @DimenRes textPaddingTopDimenResId: Int,
         @DimenRes textPaddingBottomDimenResId: Int,
-        paint: Paint
+        @ColorInt color: Int
     ) : this(
         context,
         context.resources.getDimension(textSizeDimenResId),
         context.resources.getDimension(textLeftSpaceDimenResId),
         context.resources.getDimension(textPaddingTopDimenResId),
         context.resources.getDimension(textPaddingBottomDimenResId),
-        paint
-    )
-
-    constructor(
-        context: Context,
-        @DimenRes textSizeDimenResId: Int,
-        @DimenRes textLeftSpaceDimenResId: Int,
-        @DimenRes textPaddingTopDimenResId: Int,
-        @DimenRes textPaddingBottomDimenResId: Int
-    ) : this(
-        context,
-        context.resources.getDimension(textSizeDimenResId),
-        context.resources.getDimension(textLeftSpaceDimenResId),
-        context.resources.getDimension(textPaddingTopDimenResId),
-        context.resources.getDimension(textPaddingBottomDimenResId)
+        color
     )
 
     override fun draw(canvas: Canvas, p: DrawParameter) {
@@ -73,17 +54,24 @@ abstract class StringSpanItemDecoration(
         view: View,
         prevAsset: StringDecorationAsset?,
         asset: StringDecorationAsset,
-        nextAsset: StringDecorationAsset?
+        nextAsset: StringDecorationAsset?,
+        paint: Paint?
     ): DrawParameter {
-        var textBaselineY = view.top.coerceAtLeast(0) + textPaddingTop + textSize
+        val paintParam = paint ?: Paint().apply {
+            this.style = Paint.Style.FILL
+            this.textSize = TypedValue.applyDimension(COMPLEX_UNIT_SP, textSizeSp, context.resources.displayMetrics)
+            this.color = colorInt
+            this.isAntiAlias = true
+        }
+        var textBaselineY = view.top.coerceAtLeast(0) + textPaddingTopSp + textSizeSp
         if (nextAsset?.isEqualsTo(asset) == false) {
-            textBaselineY = textBaselineY.coerceAtMost(view.bottom - textPaddingBottom)
+            textBaselineY = textBaselineY.coerceAtMost(view.bottom - textPaddingBottomSp)
         }
         return TextDrawParameter(
             asset.value,
-            textLeftSpace,
+            textLeftSpaceSp,
             textBaselineY,
-            paint
+            paintParam
         )
     }
 }

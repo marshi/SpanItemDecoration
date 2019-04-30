@@ -1,5 +1,6 @@
 package marshi.android.spanitemdecoration
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,17 +22,24 @@ class MainActivity : AppCompatActivity() {
         (1..100).forEach {
             vhAdapter.add("$it")
         }
+        binding.recyclerview.addItemDecoration(
+            ConcreteStringSpanItemDecoration(
+                this,
+                vhAdapter,
+                R.dimen.text_size,
+                R.dimen.padding_left,
+                R.dimen.padding_top,
+                R.dimen.padding_bottom,
+                Color.BLUE
+            )
+        )
 //        binding.recyclerview.addItemDecoration(
-//            ConcreteStringSpanItemDecoration(
+//            ConcreteBitmapSpamItemDecoration(
 //                this,
 //                vhAdapter,
-//                R.dimen.text_size,
-//                R.dimen.text_padding_left,
-//                R.dimen.text_padding_top,
-//                R.dimen.text_padding_bottom
+//                R.dimen.padding_left, R.dimen.padding_top, R.dimen.padding_bottom
 //            )
 //        )
-        binding.recyclerview.addItemDecoration(ConcreteBitmapSpamItemDecoration(this, vhAdapter))
     }
 }
 

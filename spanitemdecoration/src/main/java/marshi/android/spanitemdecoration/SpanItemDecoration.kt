@@ -1,6 +1,7 @@
 package marshi.android.spanitemdecoration
 
 import android.graphics.Canvas
+import android.graphics.Paint
 import android.view.View
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,7 @@ abstract class SpanItemDecoration<T : DecorationAsset<*>> : RecyclerView.ItemDec
         view: View,
         prevAsset: T?,
         asset: T,
-        nextAsset: T?
+        nextAsset: T?,
+        paint: Paint? = null
     ): DrawParameter
 }

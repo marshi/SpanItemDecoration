@@ -1,6 +1,7 @@
 package marshi.android.spanitemdecoration
 
 import android.content.Context
+import androidx.annotation.ColorInt
 import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
 import marshi.android.spanitemdecoration.decoration.StringSpanItemDecoration
@@ -11,13 +12,15 @@ class ConcreteStringSpanItemDecoration(
     @DimenRes textSizeDimenId: Int,
     @DimenRes textLeftSpaceDimenId: Int,
     @DimenRes textPaddingTopDimenId: Int,
-    @DimenRes textPaddingBottomDimenId: Int
+    @DimenRes textPaddingBottomDimenId: Int,
+    @ColorInt colorInt: Int
 ) : StringSpanItemDecoration(
     context,
     textSizeDimenId,
     textLeftSpaceDimenId,
     textPaddingTopDimenId,
-    textPaddingBottomDimenId
+    textPaddingBottomDimenId,
+    colorInt
 ) {
 
     override fun asset(position: Int): DecorationAsset<String>? {
