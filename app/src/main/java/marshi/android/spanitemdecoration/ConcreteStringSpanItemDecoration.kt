@@ -11,7 +11,14 @@ class ConcreteStringSpanItemDecoration(
     textLeftSpace: Int,
     textPaddingTop: Int,
     textPaddingBottom: Int
-) : StringSpanItemDecoration(context, groupAdapter, textSize, textLeftSpace, textPaddingTop, textPaddingBottom) {
+) : StringSpanItemDecoration(
+    context,
+    groupAdapter,
+    textSize,
+    textLeftSpace,
+    textPaddingTop,
+    textPaddingBottom
+) {
 
     override fun asset(position: Int): DecorationAsset<String>? {
         if (position < 0 || position >= groupAdapter.itemCount) {
