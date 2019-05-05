@@ -15,6 +15,7 @@
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:textSize="20sp"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="StringSpanItemDecoration Sample"
                 android:layout_height="100dp"/>
 
@@ -27,6 +28,7 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 android:layout_width="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="BitmapSpanItemDecoration Sample"
                 android:layout_height="100dp"/>
 
