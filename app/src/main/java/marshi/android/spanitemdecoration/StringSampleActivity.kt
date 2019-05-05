@@ -22,7 +22,7 @@ class StringSampleActivity : AppCompatActivity() {
         val vhAdapter = Adapter()
         binding.recyclerview.adapter = vhAdapter
         (1..100).forEach {
-            vhAdapter.add("$it")
+            vhAdapter.add("sample item $it")
         }
         binding.recyclerview.addItemDecoration(
             ConcreteStringSpanItemDecoration(

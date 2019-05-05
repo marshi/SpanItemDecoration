@@ -2,6 +2,7 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
 >
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -10,6 +11,8 @@
                 android:id="@+id/text"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:textSize="15sp"
+                tools:text="samplesample"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"/>
 

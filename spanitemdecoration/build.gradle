@@ -1,6 +1,21 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    def groupProjectID = 'marshi.android'
+    def artifactProjectID = 'span-item-decoration'
+    def publishVersionID = '0.9'
+
+    userOrg = 'marshi'
+    repoName = 'SpanItemDecoration'
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = 'Shows RecyclerView decoration astride multiple items.'
+    website = 'https://github.com/marshi/SpanItemDecoration'
+}
 
 android {
     compileSdkVersion 28
