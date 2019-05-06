@@ -5,7 +5,7 @@ apply plugin: 'com.novoda.bintray-release'
 
 publish {
     def groupProjectID = 'marshi.android'
-    def artifactProjectID = 'span-item-decoration'
+    def artifactProjectID = 'spaniemdecoration'
     def publishVersionID = '0.9'
 
     userOrg = 'marshi'

@@ -39,8 +39,8 @@ abstract class StringSpanItemDecoration(
         color
     )
 
-    override fun draw(canvas: Canvas, p: DrawParameter) {
-        val param = p as? TextDrawParameter ?: return
+    override fun draw(canvas: Canvas, drawParameter: DrawParameter) {
+        val param = drawParameter as? TextDrawParameter ?: return
         canvas.drawText(
             param.text,
             param.x,
