@@ -11,7 +11,7 @@ publish {
     def publishVersionID = version
 
     userOrg = 'marshi'
-    repoName = 'spanitemdecoration'
+    repoName = 'maven'
     groupId = groupProjectID
     artifactId = artifactProjectID
     publishVersion = publishVersionID
