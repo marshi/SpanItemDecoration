@@ -3,13 +3,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.novoda.bintray-release'
 
+version="1.0"
+
 publish {
     def groupProjectID = 'marshi.android'
     def artifactProjectID = 'spaniemdecoration'
-    def publishVersionID = '0.9'
+    def publishVersionID = version
 
     userOrg = 'marshi'
-    repoName = 'SpanItemDecoration'
+    repoName = 'spanitemdecoration'
     groupId = groupProjectID
     artifactId = artifactProjectID
     publishVersion = publishVersionID
@@ -24,7 +26,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName version
     }
 
     buildTypes {
