@@ -1,6 +1,6 @@
 # SpanItemDecoration
 
-SpanItemDecoration extends RecyclerView.Decoration.
+SpanItemDecoration extends RecyclerView.ItemDecoration.
 
 It shows RecyclerView decoration astride multiple items.
 
@@ -28,9 +28,13 @@ implementation 'marshi.android:spaniemdecoration:1.0'
 ## Bitmap Decoration Sample Code
 
 Extends BitmapSpanItemDecoration and override `asset(position: Int)` function.
+
 The function return DecorationAsset which define asset resource and asset id according to position.
+
 If id is same value between consecutive position, latter asset is not shown.
+
 In ConcreteBitmapSpamItemDecoration class case, when position value is 0 or 1, same id is set.
+
 Therefore a bitmap is shown when position value is 0 and is not shown when the value is 1.
 
 ```
